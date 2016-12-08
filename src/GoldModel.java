@@ -14,7 +14,7 @@ import java.util.List;
  * of remaining coins. The game is won when all coins are collected and lost when
  * collector leaves game board.
  */
-public class GoldModel extends GameModel {
+public class GoldModel implements GameModel {
 	public enum Directions {
 		EAST(1, 0),
 		WEST(-1, 0),
@@ -81,6 +81,8 @@ public class GoldModel extends GameModel {
 
 	/** The number of coins found. */
 	private int score;
+
+	private
 
 	/**
 	 * Create a new model for the gold game.
@@ -164,6 +166,21 @@ public class GoldModel extends GameModel {
 		return new Position(
 				this.collectorPos.getX() + this.direction.getXDelta(),
 				this.collectorPos.getY() + this.direction.getYDelta());
+	}
+
+	@Override
+	public GameTile getGameboardState(Position pos) {
+		return null;
+	}
+
+	@Override
+	public GameTile getGameboardState(int x, int y) {
+		return null;
+	}
+
+	@Override
+	public Dimension getGameboardSize() {
+		return null;
 	}
 
 	/**

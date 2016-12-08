@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
  * @author evensen
  * 
  */
-public class ReversiModel extends GameModel {
+public class ReversiModel implements GameModel {
 	public enum Direction {
 			EAST(1, 0),
 			SOUTHEAST(1, 1),
@@ -309,6 +309,42 @@ public class ReversiModel extends GameModel {
 					this.cursorPos.getY() + dir.getYDelta());
 	}
 
+	@Override
+	public GameTile getGameboardState(Position pos) {
+		PieceColor pc = board[pos.getX()][pos.getY()];
+        GameTile cursoredTile;
+        if (pos == this.cursorPos) {
+            if (canTurn(this.turn, pos)) {
+                if (this.turn == Turn.BLACK) {
+                    return cursorBlackTile;
+                } else if (this.turn == Turn.WHITE) {
+                    return cursorWhiteTile;
+                }
+            } else {
+                return cursorRedTile;
+            }
+        }
+        else {
+            if (pc == PieceColor.BLACK) {
+                return blackTile;
+            }
+            else if (pc == PieceColor.WHITE) {
+                return whiteTile;
+            }
+        }
+        return blankTile;
+	}
+
+	@Override
+	public GameTile getGameboardState(int x, int y) {
+		return getGameboardState(new Position(x, y));
+	}
+
+	@Override
+	public Dimension getGameboardSize() {
+		return null;
+	}
+
 	/**
 	 * This method is called repeatedly so that the
 	 * game can update its state.
@@ -345,7 +381,7 @@ public class ReversiModel extends GameModel {
 			if (c.getTop() == cursorRedTile ||
 					c.getTop() == cursorWhiteTile ||
 					c.getTop() == cursorBlackTile) {
-				setGameboardState(oldCursorPos, c.getBottom());
+				//setGameboardState(oldCursorPos, c.getBottom());
 			}
 		}
 	}
@@ -362,7 +398,7 @@ public class ReversiModel extends GameModel {
 		} else {
 			cursoredTile = new CompositeTile(t, cursorRedTile);
 		}
-		setGameboardState(this.cursorPos, cursoredTile);
+		//setGameboardState(this.cursorPos, cursoredTile);
 	}
 
 }
