@@ -83,10 +83,13 @@ public class ReversiModel implements GameModel {
 	private final int height;
 	private boolean gameOver;
 
+	private GameTile[][] gameboardState;
+
 	public ReversiModel() {
 		this.width = Constants.getGameSize().width;
 		this.height = Constants.getGameSize().height;
 		this.board = new PieceColor[this.width][this.height];
+		this.gameboardState = new GameTile[getGameboardSize().width][getGameboardSize().height];
 
 		// Blank out the whole gameboard...
 		for (int i = 0; i < this.width; i++) {
