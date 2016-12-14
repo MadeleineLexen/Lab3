@@ -314,7 +314,9 @@ public class ReversiModel implements GameModel {
 
 	@Override
 	public GameTile getGameboardState(Position pos) {
-		PieceColor pc = board[pos.getX()][pos.getY()];
+		return getGameboardState(pos.getX(), pos.getY());
+
+		/*PieceColor pc = board[pos.getX()][pos.getY()];
         GameTile cursoredTile;
         if (pos == this.cursorPos) {
             if (canTurn(this.turn, pos)) {
@@ -329,18 +331,19 @@ public class ReversiModel implements GameModel {
         }
         else {
             if (pc == PieceColor.BLACK) {
-                return blackTile;
+                return blackGridTile;
             }
             else if (pc == PieceColor.WHITE) {
-                return whiteTile;
+                return whiteGridTile;
             }
         }
-        return blankTile;
+        return blankTile;*/
 	}
 
 	@Override
 	public GameTile getGameboardState(int x, int y) {
-		return getGameboardState(new Position(x, y));
+		return this.gameboardState[x][y];
+		//return getGameboardState(new Position(x, y));
 	}
 
 	@Override

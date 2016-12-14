@@ -118,7 +118,6 @@ public class GoldModel implements GameModel {
 		Position newCoinPos;
 		Dimension size = getGameboardSize();
 		// Loop until a blank position is found and ...
-        System.out.println(size.width);
 		do {
 			newCoinPos = new Position((int) (Math.random() * size.width),
 										(int) (Math.random() * size.height));
@@ -175,7 +174,9 @@ public class GoldModel implements GameModel {
 
 	@Override
 	public GameTile getGameboardState(Position pos) {
-	    if (collectorPos.equals(pos)) {
+        return getGameboardState(pos.getX(), pos.getY());
+
+	    /*if (collectorPos.equals(pos)) {
 	        return COLLECTOR_TILE;
         }
         for (int i = 0; i < coins.size(); i++) {
@@ -183,12 +184,13 @@ public class GoldModel implements GameModel {
                 return COIN_TILE;
             }
         }
-        return BLANK_TILE;
+        return BLANK_TILE;*/
 	}
 
 	@Override
 	public GameTile getGameboardState(int x, int y) {
-		return getGameboardState(new Position(x, y));
+	    return this.gameboardState[x][y];
+		/*return getGameboardState(new Position(x, y));*/
 	}
 
 	@Override
