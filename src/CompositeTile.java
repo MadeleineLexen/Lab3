@@ -9,7 +9,7 @@ import java.awt.Graphics;
  */
 
 //en liten kommentar
-public class CompositeTile extends GameTile {
+public class CompositeTile implements GameTile {
 	private final GameTile bottomTile;
 	private final GameTile topTile;
 
