@@ -1,3 +1,5 @@
+import java.awt.event.KeyListener;
+
 /**
  * Factory class for available games.
  */
@@ -26,7 +28,9 @@ public class GameFactory implements IGameFactory {
 			return new GoldModel();
 		}
 		else if (gameName.equals("Reversi")) {
-			return new ReversiModel();
+			GameModel instance = new ReversiModel();
+			ReversiScoreView scoreView = new ReversiScoreView();
+			return instance ;
 		}
 
 		throw new IllegalArgumentException("No such game: " + gameName);

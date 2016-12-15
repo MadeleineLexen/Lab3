@@ -244,7 +244,12 @@ public class GoldModel implements GameModel {
 
 		// Add a new coin (simulating moving one coin)
 		addCoin();
+		pcs.firePropertyChange("Hej", 23, 56);
+	}
 
+	@Override
+	public int getUpdateSpeed() {
+		return 150;
 	}
 
 	/**

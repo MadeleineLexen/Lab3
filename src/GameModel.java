@@ -5,10 +5,12 @@ import java.awt.*;
  */
 public interface GameModel extends IObservable {
 
-    public GameTile getGameboardState(final Position pos);
+    GameTile getGameboardState(final Position pos);
 
-    public GameTile getGameboardState(final int x, final int y);
+    GameTile getGameboardState(final int x, final int y);
 
-    public void gameUpdate(int lastKey) throws GameOverException;
+    void gameUpdate(int lastKey) throws GameOverException;
+
+    int getUpdateSpeed();
 
 }

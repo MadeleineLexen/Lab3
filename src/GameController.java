@@ -1,6 +1,9 @@
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -68,7 +71,19 @@ public class GameController implements Runnable {
 	 * Add a key press to the end of the queue
 	 */
 	private synchronized void enqueueKeyPress(final int key) {
-		this.keypresses.add(Integer.valueOf(key));
+		if(gameModel.getUpdateSpeed() < 0 ){
+			try{
+				gameModel.gameUpdate(key);
+			}
+			catch (GameOverException e){
+				this.isRunning = false;
+				System.out.println("Game over: " + e.getScore());
+			}
+		}
+		else {
+			this.keypresses.add(Integer.valueOf(key));
+		}
+
 	}
 
 	/**
@@ -98,6 +113,9 @@ public class GameController implements Runnable {
 
 		// Start listening for key events
 		this.view.addKeyListener(this.keyListener);
+
+		PropertyChangeSupport psc = new PropertyChangeSupport(this);
+		psc.;
 
 		// Tell the view what to paint...
 		this.view.setModel(gameModel);
@@ -143,15 +161,17 @@ public class GameController implements Runnable {
 	 */
 	@Override
 	public void run() {
-		while (this.isRunning) {
+		while (this.isRunning && gameModel.getUpdateSpeed() > 0) {
 			try {
 				// Tell model to update, send next key press.
 				// or 0 if no new keypress since last update.
-				this.gameModel.gameUpdate(nextKeyPress());
+
+					this.gameModel.gameUpdate((nextKeyPress()));
+					Thread.sleep(gameModel.getUpdateSpeed());
 
 				//this.view.repaint();
 
-				Thread.sleep(this.updateInterval);
+
 			} catch (GameOverException e) {
 				// we got a game over signal, time to exit...
 				// The current implementation ignores the game score
