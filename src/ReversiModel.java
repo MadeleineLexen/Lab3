@@ -375,6 +375,7 @@ public class ReversiModel implements GameModel {
 	 */
 	@Override
 	public void gameUpdate(final int lastKey) throws GameOverException {
+		System.out.println("Update");
 		pcs.firePropertyChange("Hej", 23, 56);
 		if (!this.gameOver) {
 			Position nextCursorPos = getNextCursorPos(updateDirection(lastKey));

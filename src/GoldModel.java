@@ -28,6 +28,7 @@ public class GoldModel implements GameModel {
 	@Override
 	public void addObserver(PropertyChangeListener observer) {
 		pcs.addPropertyChangeListener(observer);
+
 	}
 
 	public enum Directions {
@@ -214,8 +215,6 @@ public class GoldModel implements GameModel {
 	@Override
 	public void gameUpdate(final int lastKey) throws GameOverException {
 		updateDirection(lastKey);
-		pcs.firePropertyChange("Hej", 23, 56);
-
 
 		// Erase the previous position.
 		GameUtils.setGameboardState(this.collectorPos, BLANK_TILE, gameboardState);
