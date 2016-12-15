@@ -114,9 +114,6 @@ public class GameController implements Runnable {
 		// Start listening for key events
 		this.view.addKeyListener(this.keyListener);
 
-		PropertyChangeSupport psc = new PropertyChangeSupport(this);
-		psc.;
-
 		// Tell the view what to paint...
 		this.view.setModel(gameModel);
 

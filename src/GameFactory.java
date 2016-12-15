@@ -30,6 +30,7 @@ public class GameFactory implements IGameFactory {
 		else if (gameName.equals("Reversi")) {
 			GameModel instance = new ReversiModel();
 			ReversiScoreView scoreView = new ReversiScoreView();
+			instance.addObserver(scoreView);
 			return instance ;
 		}
 

@@ -6,15 +6,11 @@ import java.beans.PropertyChangeSupport;
  * Created by madeleine on 2016-12-15.
  */
 public class ReversiScoreView implements PropertyChangeListener{
-    PropertyChangeSupport psc = new PropertyChangeSupport(this);
-
-    public void getScore(){
-        psc.firePropertyChange("Karlsson", 877, 43903);
-    }
-
-
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        evt.getSource().g
+        ReversiModel rm = (ReversiModel) evt.getSource();
+        System.out.println(rm.getBlackScore());
+        System.out.println(rm.getWhiteScore());
+        System.out.println(rm.getTurnColor());
     }
 }
