@@ -13,5 +13,9 @@ public class GameUtils {
         setGameboardState(pos.getX(), pos.getY(), tile, gameboardState);
     }
 
+    protected static Dimension getGameboardSize(int width, int height) {
+        return new Dimension(width, height);
+    }
+
 
 }

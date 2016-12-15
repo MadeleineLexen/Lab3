@@ -9,8 +9,6 @@ public interface GameModel {
 
     public GameTile getGameboardState(final int x, final int y);
 
-    public Dimension getGameboardSize();
-
     public void gameUpdate(int lastKey) throws GameOverException;
 
 }

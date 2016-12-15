@@ -176,28 +176,18 @@ public class GoldModel implements GameModel {
 	public GameTile getGameboardState(Position pos) {
         return getGameboardState(pos.getX(), pos.getY());
 
-	    /*if (collectorPos.equals(pos)) {
-	        return COLLECTOR_TILE;
-        }
-        for (int i = 0; i < coins.size(); i++) {
-            if (coins.get(i) == pos) {
-                return COIN_TILE;
-            }
-        }
-        return BLANK_TILE;*/
 	}
 
 	@Override
 	public GameTile getGameboardState(int x, int y) {
 	    return this.gameboardState[x][y];
-		/*return getGameboardState(new Position(x, y));*/
 	}
 
-	@Override
 	public Dimension getGameboardSize() {
-	    Dimension d = Constants.getGameSize();
-		return new Dimension(d.width, d.height);
-	}
+	    return GameUtils.getGameboardSize((int)Constants.getGameSize().getWidth(), (int)Constants.getGameSize().getHeight());
+    }
+
+
 
 	/**
 	 * This method is called repeatedly so that the
