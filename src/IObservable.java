@@ -6,4 +6,5 @@ import java.beans.PropertyChangeListener;
 public interface IObservable {
     void removeObserver(PropertyChangeListener observer);
     void addObserver(PropertyChangeListener observer);
+
 }

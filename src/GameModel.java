@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Created by hannacarlsson on 2016-12-08.
  */
-public interface GameModel {
+public interface GameModel extends IObservable {
 
     public GameTile getGameboardState(final Position pos);
 

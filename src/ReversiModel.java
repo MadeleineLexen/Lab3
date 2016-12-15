@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * A somewhat defective implementation of the game Reversi. The purpose
@@ -10,6 +12,21 @@ import java.awt.event.KeyEvent;
  * 
  */
 public class ReversiModel implements GameModel {
+
+	PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
+	@Override
+	public void removeObserver(PropertyChangeListener observer) {
+		pcs.removePropertyChangeListener(observer);
+
+	}
+
+	@Override
+	public void addObserver(PropertyChangeListener observer) {
+		pcs.addPropertyChangeListener(observer);
+
+	}
+
 	public enum Direction {
 			EAST(1, 0),
 			SOUTHEAST(1, 1),
@@ -358,6 +375,7 @@ public class ReversiModel implements GameModel {
 	 */
 	@Override
 	public void gameUpdate(final int lastKey) throws GameOverException {
+		pcs.firePropertyChange("Hej", 23, 56);
 		if (!this.gameOver) {
 			Position nextCursorPos = getNextCursorPos(updateDirection(lastKey));
 			Dimension boardSize = getGameboardSize();

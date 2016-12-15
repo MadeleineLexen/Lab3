@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,19 @@ import java.util.List;
  * collector leaves game board.
  */
 public class GoldModel implements GameModel {
+
+	PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
+	@Override
+	public void removeObserver(PropertyChangeListener observer) {
+		pcs.removePropertyChangeListener(observer);
+	}
+
+	@Override
+	public void addObserver(PropertyChangeListener observer) {
+		pcs.addPropertyChangeListener(observer);
+	}
+
 	public enum Directions {
 		EAST(1, 0),
 		WEST(-1, 0),
@@ -199,6 +214,8 @@ public class GoldModel implements GameModel {
 	@Override
 	public void gameUpdate(final int lastKey) throws GameOverException {
 		updateDirection(lastKey);
+		pcs.firePropertyChange("Hej", 23, 56);
+
 
 		// Erase the previous position.
 		GameUtils.setGameboardState(this.collectorPos, BLANK_TILE, gameboardState);
@@ -240,5 +257,7 @@ public class GoldModel implements GameModel {
 		return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
 				|| pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
 	}
+
+
 
 }
